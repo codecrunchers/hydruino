@@ -2,6 +2,7 @@
 #include "DHTSensor.h"
 
 
+
 char* DHTSensor::status(){ 
   int chk = DHT.read11(getPin());
   switch (chk)

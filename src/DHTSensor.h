@@ -9,6 +9,7 @@
 
 class DHTSensor : public Sensor{
   public:
+    inline DHTSensor::DHTSensor(sensor_type t) : Sensor(t){}
     typedef struct {
       float  temperature;
       float humidity;
