@@ -10,21 +10,10 @@
 #endif
 
 #include "cloudponics.h"
+#include "MotorController.h"
 
 
-class WaterPump {
-  public:
-    WaterPump();
-    
-    void init();
-    void start();
-    void stop();
-
- 
-  private:
-    int pump_state = LOW;
-    const int WATER_PUMP_RELAY   = WATER_PUMP_RELAY_PIN;
-
+class WaterPump : public MotorController {
 };
 
 #endif

@@ -10,22 +10,9 @@
 #endif
 
 #include "cloudponics.h"
+#include "MotorController.h"
 
 
-class NutrientPump {
-  public:
-    NutrientPump();
-    
-    void init();
-    void ph_up(int dosage);
-    void ph_down(int dosage);
-
- 
-  private:
-    const int PH_UP_PUMP_RELAY   = PH_UP_PUMP_RELAY_PIN;
-    const int PH_DOWN_PUMP_RELAY  = PH_DOWN_PUMP_RELAY_PIN;
-    void stop();
-
-};
+class NutrientPump : public MotorController {};
 
 #endif

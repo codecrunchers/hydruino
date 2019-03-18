@@ -1,0 +1,45 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CLOUDPONICS_h	cloudponics.h	5;"	d
+CP_DHT11_PIN	cloudponics.h	16;"	d
+DHTSENSOR_h	DHTSensor.h	2;"	d
+DHTSensor	DHTSensor.h	/^class DHTSensor : public Sensor {$/;"	c
+DHTTYPE	DHTSensor.h	7;"	d
+FAN_RELAY_PIN	cloudponics.h	14;"	d
+FAN_h	Fan.h	2;"	d
+Fan	Fan.h	/^class Fan : public MotorController $/;"	c
+HIGH	cloudponics.h	8;"	d
+LDR_PIN	cloudponics.h	15;"	d
+LOW	cloudponics.h	9;"	d
+MOTORCONTROLLER_h	MotorController.h	2;"	d
+MotorController	MotorController.cpp	/^MotorController::MotorController(){}$/;"	f	class:MotorController
+MotorController	MotorController.h	/^class MotorController {$/;"	c
+NUTRIENTPUMP_h	nutrient_pump.h	2;"	d
+NutrientPump	nutrient_pump.h	/^class NutrientPump : public MotorController {};$/;"	c
+PH_DOWN_PUMP_RELAY_PIN	cloudponics.h	12;"	d
+PH_UP_PUMP_RELAY_PIN	cloudponics.h	11;"	d
+PIN	Sensor.h	/^    int PIN;$/;"	m	class:Sensor
+RELAY	MotorController.h	/^    int RELAY;$/;"	m	class:MotorController
+SENSOR_h	Sensor.h	2;"	d
+Sensor	Sensor.cpp	/^Sensor::Sensor(){}$/;"	f	class:Sensor
+Sensor	Sensor.h	/^class Sensor {$/;"	c
+WATERPUMP_h	water_pump.h	2;"	d
+WATER_PUMP_RELAY_PIN	cloudponics.h	13;"	d
+WaterPump	water_pump.h	/^class WaterPump : public MotorController {$/;"	c
+_desc	MotorController.h	/^    char _desc[256];$/;"	m	class:MotorController
+_desc	Sensor.h	/^    char _desc[256];$/;"	m	class:Sensor
+delayMS	DHTSensor.cpp	/^uint32_t delayMS;$/;"	v
+getPin	Sensor.h	/^    int getPin() { $/;"	f	class:Sensor
+init	MotorController.cpp	/^void MotorController::init(char *desc, int pin){$/;"	f	class:MotorController
+init	Sensor.cpp	/^void Sensor::init(char *desc, int pin){$/;"	f	class:Sensor
+lastVal	Sensor.h	/^    float lastVal= 0L;$/;"	m	class:Sensor
+override	DHTSensor.h	/^    float readValue() override;  $/;"	m	class:DHTSensor
+readValue	DHTSensor.cpp	/^float DHTSensor::readValue() {$/;"	f	class:DHTSensor
+readValue	Sensor.cpp	/^float Sensor::readValue(){$/;"	f	class:Sensor
+setLastValue	Sensor.h	/^    void setLastValue(float newValue){$/;"	f	class:Sensor
+start	MotorController.cpp	/^void MotorController::start(){$/;"	f	class:MotorController
+stop	MotorController.cpp	/^void MotorController::stop(){$/;"	f	class:MotorController
