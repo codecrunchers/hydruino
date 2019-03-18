@@ -14,12 +14,6 @@
 #define FAN_RELAY_PIN           2
 #define DHT11_PIN               3
 #define LDR_PIN                 A1
-
-
-
-
-
-
-
+#define TDS_PIN                 A2
 
 #endif

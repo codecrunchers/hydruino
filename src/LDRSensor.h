@@ -4,7 +4,7 @@
 #include "Sensor.h"
 class LDRSensor : public Sensor {
   public:
-    inline LDRSensor(sensor_type t) : Sensor(t){}
+    LDRSensor(sensor_type t) : Sensor(t){}
     char* status();
 };
 
