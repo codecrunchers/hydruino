@@ -1,7 +1,7 @@
 #line 2 "TestSensorComponent.ino"
 
 #include <AUnitVerbose.h>
-include "src/cp/Sensor.h"
+#include "Sensor.h"
 
 using namespace aunit;
 

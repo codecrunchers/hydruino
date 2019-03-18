@@ -1,18 +1,29 @@
 #ifndef DHTSENSOR_h
 #define DHTSENSOR_h
 
-#include "DHT.h"
+#include "dht.h"  //DHTLib
 #include "Sensor.h"
 
-#define DHTTYPE                 DHT11     
 
-class DHTSensor : public Sensor {
 
+
+class DHTSensor : public Sensor{
   public:
-    float readValue() override;  
+    typedef struct {
+      float  temperature;
+      float humidity;
+    } dht_sensor_reading;
+
+    void init(char *desc, int pin) override;
+    float readValue() override ;   //defaults to Temperature
+    float getTemperature();
+    float getHumidity();
+
+    char* status();
 
   private:
-//    DHT dht(CP_DHT11_PIN, DHTTYPE);
+    dht DHT;
+    dht_sensor_reading _t;
 };
 
 #endif
