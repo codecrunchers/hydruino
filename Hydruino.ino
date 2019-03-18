@@ -7,6 +7,7 @@
 DHTSensor extTempHmdSensor = DHTSensor(DIGITAL_SENSOR);
 LDRSensor ldr = LDRSensor(ANALOG_SENSOR);
 TDSSensor tdsSensor = TDSSensor(ANALOG_SENSOR);
+int loopCount = 0;
 
 void setup() {
   Serial.begin(9600);
@@ -14,16 +15,25 @@ void setup() {
 }
 
 void loop() {
-  delay(3000);
   Serial.print("T:" );
   Serial.println(extTempHmdSensor.getTemperature());
-  delay(1000);
   Serial.print("H:" );
   Serial.println(extTempHmdSensor.getHumidity());
   Serial.print("LDR: ");
   Serial.println(ldr.readValue());
   Serial.print("TDS: ");
   Serial.println(tdsSensor.readValue());
+  delay(1000);
+
+/*  loopCount++;
+  if(loopCount == 10){
+    Serial.print("TDS Sampled: ");
+    Serial.println(tdsSensor.getSampledValue());
+    loopCount = 0;
+  }
+*/
+
+  
 
 
 }

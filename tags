@@ -27,6 +27,7 @@ NutrientPump	src/nutrient_pump.h	/^class NutrientPump : public MotorController {
 PH_DOWN_PUMP_RELAY_PIN	src/cloudponics.h	12;"	d
 PH_UP_PUMP_RELAY_PIN	src/cloudponics.h	11;"	d
 PIN	src/Sensor.h	/^    int PIN;$/;"	m	class:Sensor
+SCOUNT	src/TDSSensor.h	5;"	d
 SENSOR_h	src/Sensor.h	2;"	d
 Sensor	src/Sensor.h	/^    Sensor(sensor_type type) : _sensor_type(type) { }$/;"	f	class:Sensor
 Sensor	src/Sensor.h	/^class Sensor {$/;"	c
@@ -34,6 +35,7 @@ TDSSENSOR_h	src/TDSSensor.h	2;"	d
 TDSSensor	src/TDSSensor.h	/^    TDSSensor(sensor_type t) : Sensor(t){}$/;"	f	class:TDSSensor
 TDSSensor	src/TDSSensor.h	/^class TDSSensor : public Sensor {$/;"	c
 TDS_PIN	src/cloudponics.h	17;"	d
+VREF	src/TDSSensor.h	4;"	d
 WATERPUMP_h	src/water_pump.h	2;"	d
 WATER_PUMP_RELAY_PIN	src/cloudponics.h	13;"	d
 WaterPump	src/water_pump.h	/^class WaterPump : public MotorController {$/;"	c
@@ -41,10 +43,17 @@ _desc	src/MotorController.h	/^    char _desc[256];$/;"	m	class:MotorController
 _desc	src/Sensor.h	/^    char _desc[256];$/;"	m	class:Sensor
 _sensor_type	src/Sensor.h	/^    sensor_type _sensor_type;$/;"	m	class:Sensor
 _t	src/DHTSensor.h	/^    dht_sensor_reading _t;$/;"	m	class:DHTSensor
+analogBuffer	src/TDSSensor.h	/^    int analogBuffer[SCOUNT];    \/\/ store the analog value in the array, read from ADC$/;"	m	class:TDSSensor
+analogBufferIndex	src/TDSSensor.h	/^    int analogBufferIndex = 0,copyIndex = 0;$/;"	m	class:TDSSensor
+analogBufferTemp	src/TDSSensor.h	/^    int analogBufferTemp[SCOUNT];$/;"	m	class:TDSSensor
+averageVoltage	src/TDSSensor.h	/^    float averageVoltage = 0,tdsValue = 0,temperature = 25;$/;"	m	class:TDSSensor
+copyIndex	src/TDSSensor.h	/^    int analogBufferIndex = 0,copyIndex = 0;$/;"	m	class:TDSSensor
 dht_sensor_reading	src/DHTSensor.h	/^    } dht_sensor_reading;$/;"	t	class:DHTSensor	typeref:struct:DHTSensor::__anon1
 getHumidity	src/DHTSensor.cpp	/^float DHTSensor::getHumidity(){$/;"	f	class:DHTSensor
 getLastValue	src/Sensor.h	/^    float getLastValue(){ return lastVal; }$/;"	f	class:Sensor
+getMedianNum	src/TDSSensor.cpp	/^int TDSSensor::getMedianNum(int bArray[], int iFilterLen) $/;"	f	class:TDSSensor
 getPin	src/Sensor.h	/^    int getPin() { return PIN;  }$/;"	f	class:Sensor
+getSampledValue	src/TDSSensor.cpp	/^float TDSSensor::getSampledValue(){$/;"	f	class:TDSSensor
 getSensorType	src/Sensor.h	/^    sensor_type getSensorType() { return _sensor_type; }$/;"	f	class:Sensor
 getTemperature	src/DHTSensor.cpp	/^float DHTSensor::getTemperature(){$/;"	f	class:DHTSensor
 humidity	src/DHTSensor.h	/^      float humidity;$/;"	m	struct:DHTSensor::__anon1
@@ -54,8 +63,10 @@ init	src/Sensor.cpp	/^void Sensor::init(char *desc, int pin){$/;"	f	class:Sensor
 lastVal	src/Sensor.h	/^    float lastVal= 0L;$/;"	m	class:Sensor
 override	src/DHTSensor.h	/^    float readValue() override ;   \/\/defaults to Temperature$/;"	m	class:DHTSensor
 override	src/DHTSensor.h	/^    void init(char *desc, int pin) override;$/;"	m	class:DHTSensor
+override	src/TDSSensor.h	/^    float readValue() override; \/\/TODO AutoCall on Timer$/;"	m	class:TDSSensor
 readValue	src/DHTSensor.cpp	/^float DHTSensor::readValue() {$/;"	f	class:DHTSensor
 readValue	src/Sensor.cpp	/^float Sensor::readValue(){$/;"	f	class:Sensor
+readValue	src/TDSSensor.cpp	/^float TDSSensor::readValue(){$/;"	f	class:TDSSensor
 readValueAnalog	src/Sensor.cpp	/^float Sensor::readValueAnalog(){$/;"	f	class:Sensor
 readValueDigital	src/Sensor.cpp	/^float Sensor::readValueDigital(){$/;"	f	class:Sensor
 relayPin	src/MotorController.h	/^    int relayPin;$/;"	m	class:MotorController
@@ -66,4 +77,6 @@ setPin	src/Sensor.h	/^    inline void setPin(int pin){ PIN = pin; }$/;"	f	class:
 start	src/MotorController.cpp	/^void MotorController::start(){$/;"	f	class:MotorController
 status	src/DHTSensor.cpp	/^char* DHTSensor::status(){ $/;"	f	class:DHTSensor
 stop	src/MotorController.cpp	/^void MotorController::stop(){$/;"	f	class:MotorController
+tdsValue	src/TDSSensor.h	/^    float averageVoltage = 0,tdsValue = 0,temperature = 25;$/;"	m	class:TDSSensor
 temperature	src/DHTSensor.h	/^      float  temperature;$/;"	m	struct:DHTSensor::__anon1
+temperature	src/TDSSensor.h	/^    float averageVoltage = 0,tdsValue = 0,temperature = 25;$/;"	m	class:TDSSensor
