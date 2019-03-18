@@ -1,5 +1,5 @@
-#include "Sensor.h"
-#include "DHTSensor.h"
+#include "src/Sensor.h"
+#include "src/DHTSensor.h"
 
 DHTSensor extTempHmdSensor = DHTSensor();
 

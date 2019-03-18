@@ -16,8 +16,9 @@ class Sensor {
   public:
     Sensor();
     
-    virtual void init(char* desc, int pin);
+    virtual void init(char *desc, int pin);
     virtual float readValue();
+
     int getPin() { 
       return PIN;
     }

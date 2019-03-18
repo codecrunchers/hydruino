@@ -16,14 +16,17 @@ class MotorController {
   public:
     MotorController();
     
-    void init(char* desc, int pin);
-    void stop();
-    void start();    
+    inline virtual void init(char *desc, int pin) {
+      strncpy(_desc, desc, 255);
+      relayPin = pin;
+    }
 
- 
+    inline virtual void stop();
+    inline virtual void start();    
+
   private:
     char _desc[256];
-    int RELAY;
+    int relayPin;
 };
 
 #endif

@@ -4,7 +4,7 @@
 #include "DHT.h"
 #include "Sensor.h"
 
-#define DHTTYPE DHT11     
+#define DHTTYPE                 DHT11     
 
 class DHTSensor : public Sensor {
 
@@ -12,7 +12,7 @@ class DHTSensor : public Sensor {
     float readValue() override;  
 
   private:
-    DHT dht(CP_DHT11_PIN, DHTTYPE);
+//    DHT dht(CP_DHT11_PIN, DHTTYPE);
 };
 
 #endif
