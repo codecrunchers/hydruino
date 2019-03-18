@@ -2,11 +2,13 @@
 #include "src/DHTSensor.h"
 #include "src/LDRSensor.h"
 #include "src/TDSSensor.h"
+#include "src/WaterTempHumiditySensor.h"
 
 
 DHTSensor extTempHmdSensor = DHTSensor(DIGITAL_SENSOR);
 LDRSensor ldr = LDRSensor(ANALOG_SENSOR);
 TDSSensor tdsSensor = TDSSensor(ANALOG_SENSOR);
+WaterTempHumiditySensor wthSensor = WaterTempHumiditySensor(ANALOG_SENSOR);
 int loopCount = 0;
 
 void setup() {
@@ -23,6 +25,10 @@ void loop() {
   Serial.println(ldr.readValue());
   Serial.print("TDS: ");
   Serial.println(tdsSensor.readValue());
+  Serial.print("Water Temp: ");
+  Serial.println(wthSensor.getTemperature());
+  Serial.print("Water Humidity: ");
+  Serial.println(wthSensor.getHumidity());
   delay(1000);
 
 /*  loopCount++;
@@ -51,4 +57,5 @@ void init_controllers(){
   Serial.print("\r\nLDR Type: ");
   Serial.println(a);
   tdsSensor.init("TDS", TDS_PIN);
+  wthSensor.init("WaterTempHumidity", -1);
 }
