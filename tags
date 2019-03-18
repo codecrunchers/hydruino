@@ -40,20 +40,21 @@ WATERPUMP_h	src/water_pump.h	2;"	d
 WATERTEMPHUMIDITYSENSOR_h	src/WaterTempHumiditySensor.h	2;"	d
 WATER_PUMP_RELAY_PIN	src/cloudponics.h	13;"	d
 WaterPump	src/water_pump.h	/^class WaterPump : public MotorController {$/;"	c
-WaterTempHumiditySensor	src/WaterTempHumiditySensor.h	/^    WaterTempHumiditySensor(sensor_type t) : Sensor(t){}$/;"	f	class:WaterTempHumiditySensor
-WaterTempHumiditySensor	src/WaterTempHumiditySensor.h	/^class WaterTempHumiditySensor : public Sensor {$/;"	c
+WaterTempHumiditySensor	src/WaterTempHumiditySensor.h	/^    WaterTempHumiditySensor(){}$/;"	f	class:WaterTempHumiditySensor
+WaterTempHumiditySensor	src/WaterTempHumiditySensor.h	/^class WaterTempHumiditySensor {$/;"	c
 _desc	src/MotorController.h	/^    char _desc[256];$/;"	m	class:MotorController
 _desc	src/Sensor.h	/^    char _desc[256];$/;"	m	class:Sensor
+_desc	src/WaterTempHumiditySensor.h	/^    char *_desc;$/;"	m	class:WaterTempHumiditySensor
+_dual_sensor_reading_t	src/WaterTempHumiditySensor.h	/^} _dual_sensor_reading_t;$/;"	t	typeref:struct:dual_sensor_reading_t
 _sensor_type	src/Sensor.h	/^    sensor_type _sensor_type;$/;"	m	class:Sensor
 _t	src/DHTSensor.h	/^    dht_sensor_reading _t;$/;"	m	class:DHTSensor
-_t	src/WaterTempHumiditySensor.h	/^    dual_sensor_reading _t; \/\/unused$/;"	m	class:WaterTempHumiditySensor
 analogBuffer	src/TDSSensor.h	/^    int analogBuffer[SCOUNT];    \/\/ store the analog value in the array, read from ADC$/;"	m	class:TDSSensor
 analogBufferIndex	src/TDSSensor.h	/^    int analogBufferIndex = 0,copyIndex = 0;$/;"	m	class:TDSSensor
 analogBufferTemp	src/TDSSensor.h	/^    int analogBufferTemp[SCOUNT];$/;"	m	class:TDSSensor
 averageVoltage	src/TDSSensor.h	/^    float averageVoltage = 0,tdsValue = 0,temperature = 25;$/;"	m	class:TDSSensor
 copyIndex	src/TDSSensor.h	/^    int analogBufferIndex = 0,copyIndex = 0;$/;"	m	class:TDSSensor
-dht_sensor_reading	src/DHTSensor.h	/^    } dht_sensor_reading;$/;"	t	class:DHTSensor	typeref:struct:DHTSensor::__anon2
-dual_sensor_reading	src/WaterTempHumiditySensor.h	/^    } dual_sensor_reading;$/;"	t	class:WaterTempHumiditySensor	typeref:struct:WaterTempHumiditySensor::__anon1
+dht_sensor_reading	src/DHTSensor.h	/^    } dht_sensor_reading;$/;"	t	class:DHTSensor	typeref:struct:DHTSensor::__anon1
+dual_sensor_reading_t	src/WaterTempHumiditySensor.h	/^typedef struct dual_sensor_reading_t {$/;"	s
 getHumidity	src/DHTSensor.cpp	/^float DHTSensor::getHumidity(){$/;"	f	class:DHTSensor
 getHumidity	src/WaterTempHumiditySensor.cpp	/^float WaterTempHumiditySensor::getHumidity(){$/;"	f	class:WaterTempHumiditySensor
 getLastValue	src/Sensor.h	/^    float getLastValue(){ return lastVal; }$/;"	f	class:Sensor
@@ -63,22 +64,20 @@ getSampledValue	src/TDSSensor.cpp	/^float TDSSensor::getSampledValue(){$/;"	f	cl
 getSensorType	src/Sensor.h	/^    sensor_type getSensorType() { return _sensor_type; }$/;"	f	class:Sensor
 getTemperature	src/DHTSensor.cpp	/^float DHTSensor::getTemperature(){$/;"	f	class:DHTSensor
 getTemperature	src/WaterTempHumiditySensor.cpp	/^float WaterTempHumiditySensor::getTemperature(){$/;"	f	class:WaterTempHumiditySensor
-humidity	src/DHTSensor.h	/^      float humidity;$/;"	m	struct:DHTSensor::__anon2
-humidity	src/WaterTempHumiditySensor.h	/^      float humidity;$/;"	m	struct:WaterTempHumiditySensor::__anon1
+humidity	src/DHTSensor.h	/^      float humidity;$/;"	m	struct:DHTSensor::__anon1
+humidity	src/WaterTempHumiditySensor.h	/^  float humidity;$/;"	m	struct:dual_sensor_reading_t
 init	src/DHTSensor.cpp	/^void DHTSensor::init(char *desc, int pin) {$/;"	f	class:DHTSensor
 init	src/MotorController.h	/^    inline virtual void init(char *desc, int pin) {$/;"	f	class:MotorController
 init	src/Sensor.cpp	/^void Sensor::init(char *desc, int pin){$/;"	f	class:Sensor
-init	src/WaterTempHumiditySensor.cpp	/^void WaterTempHumiditySensor::init(char *desc, int pin){$/;"	f	class:WaterTempHumiditySensor
+init	src/WaterTempHumiditySensor.cpp	/^void WaterTempHumiditySensor::init(char *desc){$/;"	f	class:WaterTempHumiditySensor
 lastVal	src/Sensor.h	/^    float lastVal= 0L;$/;"	m	class:Sensor
 override	src/DHTSensor.h	/^    float readValue() override ;   \/\/defaults to Temperature$/;"	m	class:DHTSensor
 override	src/DHTSensor.h	/^    void init(char *desc, int pin) override;$/;"	m	class:DHTSensor
 override	src/TDSSensor.h	/^    float readValue() override; \/\/TODO AutoCall on Timer$/;"	m	class:TDSSensor
-override	src/WaterTempHumiditySensor.h	/^    float readValue() override ;   $/;"	m	class:WaterTempHumiditySensor
-override	src/WaterTempHumiditySensor.h	/^    void init(char *desc, int pin) override;$/;"	m	class:WaterTempHumiditySensor
 readValue	src/DHTSensor.cpp	/^float DHTSensor::readValue() {$/;"	f	class:DHTSensor
 readValue	src/Sensor.cpp	/^float Sensor::readValue(){$/;"	f	class:Sensor
 readValue	src/TDSSensor.cpp	/^float TDSSensor::readValue(){$/;"	f	class:TDSSensor
-readValue	src/WaterTempHumiditySensor.cpp	/^float WaterTempHumiditySensor::readValue(){$/;"	f	class:WaterTempHumiditySensor
+readValue	src/WaterTempHumiditySensor.cpp	/^dual_sensor_reading_t WaterTempHumiditySensor::readValue(){$/;"	f	class:WaterTempHumiditySensor
 readValueAnalog	src/Sensor.cpp	/^float Sensor::readValueAnalog(){$/;"	f	class:Sensor
 readValueDigital	src/Sensor.cpp	/^float Sensor::readValueDigital(){$/;"	f	class:Sensor
 relayPin	src/MotorController.h	/^    int relayPin;$/;"	m	class:MotorController
@@ -91,6 +90,6 @@ start	src/MotorController.cpp	/^void MotorController::start(){$/;"	f	class:Motor
 status	src/DHTSensor.cpp	/^char* DHTSensor::status(){ $/;"	f	class:DHTSensor
 stop	src/MotorController.cpp	/^void MotorController::stop(){$/;"	f	class:MotorController
 tdsValue	src/TDSSensor.h	/^    float averageVoltage = 0,tdsValue = 0,temperature = 25;$/;"	m	class:TDSSensor
-temperature	src/DHTSensor.h	/^      float  temperature;$/;"	m	struct:DHTSensor::__anon2
+temperature	src/DHTSensor.h	/^      float  temperature;$/;"	m	struct:DHTSensor::__anon1
 temperature	src/TDSSensor.h	/^    float averageVoltage = 0,tdsValue = 0,temperature = 25;$/;"	m	class:TDSSensor
-temperature	src/WaterTempHumiditySensor.h	/^      float  temperature;$/;"	m	struct:WaterTempHumiditySensor::__anon1
+temperature	src/WaterTempHumiditySensor.h	/^  float  temperature;$/;"	m	struct:dual_sensor_reading_t

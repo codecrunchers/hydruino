@@ -8,8 +8,7 @@
 DHTSensor extTempHmdSensor = DHTSensor(DIGITAL_SENSOR);
 LDRSensor ldr = LDRSensor(ANALOG_SENSOR);
 TDSSensor tdsSensor = TDSSensor(ANALOG_SENSOR);
-WaterTempHumiditySensor wthSensor = WaterTempHumiditySensor(ANALOG_SENSOR);
-int loopCount = 0;
+WaterTempHumiditySensor wthSensor = WaterTempHumiditySensor();
 
 void setup() {
   Serial.begin(9600);
@@ -30,18 +29,6 @@ void loop() {
   Serial.print("Water Humidity: ");
   Serial.println(wthSensor.getHumidity());
   delay(1000);
-
-/*  loopCount++;
-  if(loopCount == 10){
-    Serial.print("TDS Sampled: ");
-    Serial.println(tdsSensor.getSampledValue());
-    loopCount = 0;
-  }
-*/
-
-  
-
-
 }
 
 
@@ -57,5 +44,5 @@ void init_controllers(){
   Serial.print("\r\nLDR Type: ");
   Serial.println(a);
   tdsSensor.init("TDS", TDS_PIN);
-  wthSensor.init("WaterTempHumidity", -1);
+  wthSensor.init("WaterTempHumidity");
 }
