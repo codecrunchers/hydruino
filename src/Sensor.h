@@ -18,18 +18,18 @@ class Sensor {
 
   public:
     typedef int sensor_type;
-    inline Sensor(sensor_type type) : _sensor_type(type) { }
-    inline int getPin() { return PIN;  }
-    inline sensor_type getSensorType() { return _sensor_type; }
-    inline getLastValue(){ return lastVal; }
+    Sensor(sensor_type type) : _sensor_type(type) { }
+    int getPin() { return PIN;  }
+    sensor_type getSensorType() { return _sensor_type; }
+    float getLastValue(){ return lastVal; }
 
     virtual void init(char *desc, int pin);
     virtual float readValue();
 
   protected:
-    void setPin(int pin){ PIN = pin; }
-    void setDesc(char* desc){ strncpy(_desc,desc,255);  }
-    void setLastValue(float newValue){ lastVal = newValue; }
+    inline void setPin(int pin){ PIN = pin; }
+    inline void setDesc(char* desc){ strncpy(_desc, desc, 255);  }
+    inline void setLastValue(float newValue){ lastVal = newValue; }
 
 
   private:
