@@ -5,29 +5,27 @@
 #include "DFRobot_SHT20.h"
 
 
+typedef struct dual_sensor_reading_t {
+  float  temperature;
+  float humidity;
+} _dual_sensor_reading_t;
 
-class WaterTempHumiditySensor : public Sensor {
+
+class WaterTempHumiditySensor {
   public:
-    WaterTempHumiditySensor(sensor_type t) : Sensor(t){}
+    WaterTempHumiditySensor(){}
 
-    typedef struct {
-      float  temperature;
-      float humidity;
-    } dual_sensor_reading;
-
-    void init(char *desc, int pin) override;
+    void init(char *desc);
     /**
      * Default to Temperature
      */
-    float readValue() override ;   
+    dual_sensor_reading_t readValue();
     float getTemperature();
     float getHumidity();
 
-    char* status();
-
   private:
+    char *_desc;
     DFRobot_SHT20    sht20;
-    dual_sensor_reading _t; //unused
 };
 
 #endif
