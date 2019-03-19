@@ -9,6 +9,7 @@ DHTSensor extTempHmdSensor = DHTSensor(DIGITAL_SENSOR);
 LDRSensor ldr = LDRSensor(ANALOG_SENSOR);
 TDSSensor tdsSensor = TDSSensor(ANALOG_SENSOR);
 WaterTempHumiditySensor wthSensor = WaterTempHumiditySensor(ANALOG_SENSOR);
+Sensor waterL = Sensor(DIGITAL_SENSOR);                                      
 int loopCount = 0;
 
 void setup() {
@@ -58,4 +59,5 @@ void init_controllers(){
   Serial.println(a);
   tdsSensor.init("TDS", TDS_PIN);
   wthSensor.init("WaterTempHumidity", -1);
+  waterL.init("", 2);  
 }
