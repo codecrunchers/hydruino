@@ -30,6 +30,9 @@ void loop() {
   Serial.println(wthSensor.getTemperature());
   Serial.print("Water Humidity: ");
   Serial.println(wthSensor.getHumidity());
+  Serial.print("Water Lvel: ");
+  Serial.println(waterL.readValue());
+
   delay(1000);
 
 /*  loopCount++;
