@@ -1,4 +1,4 @@
-#include "src/Sensor.h"
+mergeconfligct#include "src/Sensor.h"
 #include "src/DHTSensor.h"
 #include "src/LDRSensor.h"
 #include "src/TDSSensor.h"
