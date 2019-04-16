@@ -12,6 +12,9 @@ DHTSENSOR_h	src/DHTSensor.h	2;"	d
 DHTSensor	src/DHTSensor.h	/^    DHTSensor(sensor_type t) : Sensor(t){}$/;"	f	class:DHTSensor
 DHTSensor	src/DHTSensor.h	/^class DHTSensor : public Sensor{$/;"	c
 DIGITAL_SENSOR	src/cloudponics.h	8;"	d
+DISPLAYCONTROLLER_h	src/DisplayController.h	2;"	d
+DisplayController	src/DisplayController.h	/^    DisplayController(){       $/;"	f	class:DisplayController
+DisplayController	src/DisplayController.h	/^class DisplayController {$/;"	c
 FAN_RELAY_PIN	src/cloudponics.h	14;"	d
 FAN_h	src/Fan.h	2;"	d
 Fan	src/Fan.h	/^class Fan : public MotorController $/;"	c
@@ -19,11 +22,15 @@ LDRSENSOR_h	src/LDRSensor.h	2;"	d
 LDRSensor	src/LDRSensor.h	/^    LDRSensor(sensor_type t) : Sensor(t){}$/;"	f	class:LDRSensor
 LDRSensor	src/LDRSensor.h	/^class LDRSensor : public Sensor {$/;"	c
 LDR_PIN	src/cloudponics.h	16;"	d
+LED_CLK_PIN	src/DisplayController.h	16;"	d
+LED_DATA_IN_PIN	src/DisplayController.h	15;"	d
+LED_LOAD_CS_PIN	src/DisplayController.h	17;"	d
 MOTORCONTROLLER_h	src/MotorController.h	2;"	d
 MotorController	src/MotorController.cpp	/^MotorController::MotorController(){}$/;"	f	class:MotorController
 MotorController	src/MotorController.h	/^class MotorController {$/;"	c
 NUTRIENTPUMP_h	src/nutrient_pump.h	2;"	d
 NutrientPump	src/nutrient_pump.h	/^class NutrientPump : public MotorController {};$/;"	c
+ONE_LED_DEVICE	src/DisplayController.h	18;"	d
 PH_DOWN_PUMP_RELAY_PIN	src/cloudponics.h	12;"	d
 PH_UP_PUMP_RELAY_PIN	src/cloudponics.h	11;"	d
 PIN	src/Sensor.h	/^    int PIN;$/;"	m	class:Sensor
@@ -53,6 +60,7 @@ analogBufferTemp	src/TDSSensor.h	/^    int analogBufferTemp[SCOUNT];$/;"	m	class
 averageVoltage	src/TDSSensor.h	/^    float averageVoltage = 0,tdsValue = 0,temperature = 25;$/;"	m	class:TDSSensor
 copyIndex	src/TDSSensor.h	/^    int analogBufferIndex = 0,copyIndex = 0;$/;"	m	class:TDSSensor
 dht_sensor_reading	src/DHTSensor.h	/^    } dht_sensor_reading;$/;"	t	class:DHTSensor	typeref:struct:DHTSensor::__anon2
+display	src/DisplayController.h	/^    LedControl display = LedControl(LED_DATA_IN_PIN, LED_CLK_PIN ,LED_LOAD_CS_PIN, ONE_LED_DEVICE);$/;"	m	class:DisplayController
 dual_sensor_reading	src/WaterTempHumiditySensor.h	/^    } dual_sensor_reading;$/;"	t	class:WaterTempHumiditySensor	typeref:struct:WaterTempHumiditySensor::__anon1
 getHumidity	src/DHTSensor.cpp	/^float DHTSensor::getHumidity(){$/;"	f	class:DHTSensor
 getHumidity	src/WaterTempHumiditySensor.cpp	/^float WaterTempHumiditySensor::getHumidity(){$/;"	f	class:WaterTempHumiditySensor
@@ -75,6 +83,7 @@ override	src/DHTSensor.h	/^    void init(char *desc, int pin) override;$/;"	m	cl
 override	src/TDSSensor.h	/^    float readValue() override; \/\/TODO AutoCall on Timer$/;"	m	class:TDSSensor
 override	src/WaterTempHumiditySensor.h	/^    float readValue() override ;   $/;"	m	class:WaterTempHumiditySensor
 override	src/WaterTempHumiditySensor.h	/^    void init(char *desc, int pin) override;$/;"	m	class:WaterTempHumiditySensor
+print	src/DisplayController.h	/^    inline void print(char *){}$/;"	f	class:DisplayController
 readValue	src/DHTSensor.cpp	/^float DHTSensor::readValue() {$/;"	f	class:DHTSensor
 readValue	src/Sensor.cpp	/^float Sensor::readValue(){$/;"	f	class:Sensor
 readValue	src/TDSSensor.cpp	/^float TDSSensor::readValue(){$/;"	f	class:TDSSensor

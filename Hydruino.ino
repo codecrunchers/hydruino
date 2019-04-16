@@ -3,6 +3,7 @@ mergeconfligct#include "src/Sensor.h"
 #include "src/LDRSensor.h"
 #include "src/TDSSensor.h"
 #include "src/WaterTempHumiditySensor.h"
+#include "src/DisplayController.h"
 
 
 DHTSensor extTempHmdSensor = DHTSensor(DIGITAL_SENSOR);
@@ -10,6 +11,7 @@ LDRSensor ldr = LDRSensor(ANALOG_SENSOR);
 TDSSensor tdsSensor = TDSSensor(ANALOG_SENSOR);
 WaterTempHumiditySensor wthSensor = WaterTempHumiditySensor(ANALOG_SENSOR);
 Sensor waterL = Sensor(DIGITAL_SENSOR);                                      
+DisplayController display = DisplayController();
 int loopCount = 0;
 
 void setup() {
