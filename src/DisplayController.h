@@ -11,26 +11,61 @@
 
 #include "LedControl.h" // https://playground.arduino.cc/Main/LedControl
 #include <SoftTimer.h>
+#define RUN_INTERVAL 1000
+#define MAX_MSG 8
 
 
 
 class DisplayController : Task {
 
   public:
-    DisplayController() : Task(1000, &(DisplayController::update)){}
+    DisplayController() : Task(RUN_INTERVAL, &(DisplayController::update)){}
+    ~DisplayController();
 
-    void init(int,int,int, int brightness);
-    bool reset  = false;
-    bool busy = false;
+    void init(int, int, int, int brightness);
+    void reset(bool reset){ _reset = reset; }
+    void alert(bool alert){
+      _alert = true;
+    }
+    void busy(bool busy){
+      _busy =  busy;
+    }
+
+    
+    /**
+     * Write a msg to display
+     * will put display in alert mode if more than 8 chars long
+     */
+    void write(const char* msg){
+      if(NULL == msg){
+        _alert = true;
+        return;
+      }
+      
+      size_t msglen = strlen(msg);
+      
+      if(msglen >= 8){
+        _alert = true;
+      }
+
+      _msg = new char[msglen];
+      strcpy(_msg, msg);
+      _write = true;
+    };
 
 
   private:
+    static void update(Task *t);
     LedControl *_display;
     void do_reset();
     void do_alert();
-    void do_write(const char* msg, int len, bool flash);
+    void do_write();
     void do_busy();
-    static void update(Task *t);
+    char *_msg;
+    bool _alert  = false;
+    bool _busy = false;
+    bool _write =false;
+    bool _reset = false;
 };
 
 #endif

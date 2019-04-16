@@ -16,10 +16,18 @@ void _debugWrite(const char* msg){
 }
 
 
+DisplayController::~DisplayController(){
+  if(_msg){
+    delete  [] _msg;
+  }
+  _display = NULL;
+}
+
+
 static void DisplayController::update(Task* t){
   DisplayController* _dc = (DisplayController*) t;
   _debugWrite("Running Led Thread");
-  if(_dc->busy == true){
+  if(_dc->_busy == true){
     _dc->do_busy();
   }
 }
@@ -101,14 +109,15 @@ void DisplayController::do_busy(){
 }
 
 
-void DisplayController::do_write(const char* msg, int msglen, bool flash){
+void DisplayController::do_write(){
+  size_t msglen = strlen(_msg);
   if(msglen > MAX_LEN_MSG + 1) {
     do_alert();
     return;
   }
 
   for(int cycle = 0; cycle < msglen; cycle++){
-    _display->setChar(DEFAULT_DEVICE, cycle, msg[cycle], false);
+    _display->setChar(DEFAULT_DEVICE, cycle, _msg[cycle], false);
   }
 
 }
