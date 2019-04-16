@@ -36,7 +36,7 @@ static void DisplayController::update(Task* t){
     _dc->do_busy();
   }else if(_dc->_alert == true){
     _dc->do_alert();
-  }else if (_dc->_reset){
+  }else if (_dc->_reset == true){
     _dc->do_reset();
   }else if(nullptr != _dc->_msg){
     _dc->do_write();
@@ -44,8 +44,8 @@ static void DisplayController::update(Task* t){
 }
 
 
-void DisplayController::init(int LED_DATA_IN_PIN, int LED_CLK_PIN, int LED_LOAD_CS_PIN, int brightness){
-  LedControl display = LedControl(LED_DATA_IN_PIN, LED_CLK_PIN ,LED_LOAD_CS_PIN, 1);
+void DisplayController::init(int led_data_in_pin, int led_clk_pin, int led_load_cs_pin, int brightness){
+  LedControl display = LedControl(led_data_in_pin, led_clk_pin ,led_load_cs_pin, 1);
   display.shutdown(DEFAULT_DEVICE,false);
   if(brightness <= 15 && brightness > 0){
     display.setIntensity(DEFAULT_DEVICE, brightness);

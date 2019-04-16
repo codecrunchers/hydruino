@@ -6,15 +6,6 @@
 #include "src/DisplayController.h"
 #include <SoftTimer.h>
 
-namespace {
- const int8_t LED_DATA_IN_PIN   = 7;
- const int8_t LED_CLK_PIN       = 5;
- const int8_t LED_LOAD_CS_PIN   = 6; 
- const int8_t DEBUG             = 1;
- const int8_t HOW_BRIGHT        = 10;
-}
-
-
 
 DHTSensor extTempHmdSensor = DHTSensor(DIGITAL_SENSOR);
 LDRSensor ldr = LDRSensor(ANALOG_SENSOR);
@@ -26,7 +17,7 @@ DisplayController dc = DisplayController();
 int loopCount = 0;
 
 void _loop(Task *t);
-Task mainLoop(500, _loop);
+Task mainLoop(MAIN_LOOP_INTERVAL, _loop);
 
 
 void setup() {
