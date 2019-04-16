@@ -55,6 +55,21 @@ void DisplayController::do_alert(){
 #define TOP_ROW 4
 void DisplayController::do_busy(){
   int curRow = 0;
+      delay(100);
+      _display->setLed(DEFAULT_DEVICE, 
+          curRow,
+          3,
+          true);
+
+      delay(50);
+
+      _display->setLed(DEFAULT_DEVICE, 
+          curRow,
+          2,
+          true);
+
+
+
   for(int perimWalk = 0; perimWalk <= 20; perimWalk++){
     _display->setLed(DEFAULT_DEVICE, 
         perimWalk<=8 ? curRow++ : curRow--, 
