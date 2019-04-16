@@ -1,7 +1,7 @@
 #include "Sensor.h"
 
 
-void Sensor::init(char *desc, int pin){
+void Sensor::init(const char *desc, int pin){
   setDesc(desc);
   setPin(pin);
   pinMode(getPin(), INPUT);

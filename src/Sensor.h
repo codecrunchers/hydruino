@@ -23,12 +23,12 @@ class Sensor {
     sensor_type getSensorType() { return _sensor_type; }
     float getLastValue(){ return lastVal; }
 
-    virtual void init(char *desc, int pin);
+    virtual void init(const char *desc, int pin);
     virtual float readValue();
 
   protected:
     inline void setPin(int pin){ PIN = pin; }
-    inline void setDesc(char* desc){ strncpy(_desc, desc, 255);  }
+    inline void setDesc(const char* desc){ strncpy(_desc, desc, 255);  }
     inline void setLastValue(float newValue){ lastVal = newValue; }
 
 

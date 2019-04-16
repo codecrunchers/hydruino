@@ -1,5 +1,5 @@
 #include <SoftTimer.h>
-#include "DisplayController.h"
+#include "src/DisplayController.h"
 
 
 namespace {

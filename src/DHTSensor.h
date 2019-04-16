@@ -15,12 +15,12 @@ class DHTSensor : public Sensor{
       float humidity;
     } dht_sensor_reading;
 
-    void init(char *desc, int pin) override;
+    void init(const char *desc, int pin) override;
     float readValue() override ;   //defaults to Temperature
     float getTemperature();
     float getHumidity();
 
-    char* status();
+    const char* status();
 
   private:
     dht DHT;

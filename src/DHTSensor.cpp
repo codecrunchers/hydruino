@@ -3,7 +3,7 @@
 
 
 
-char* DHTSensor::status(){ 
+const char* DHTSensor::status(){ 
   int chk = DHT.read11(getPin());
   switch (chk)
   {
@@ -25,7 +25,7 @@ char* DHTSensor::status(){
 
 }
 
-void DHTSensor::init(char *desc, int pin) {
+void DHTSensor::init(const char *desc, int pin) {
   setPin(pin);
   setDesc(desc);
 }
