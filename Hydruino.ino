@@ -14,6 +14,20 @@ WaterTempHumiditySensor wthSensor = WaterTempHumiditySensor(ANALOG_SENSOR);
 Sensor waterL = Sensor(DIGITAL_SENSOR);                                      
 DisplayController dc = DisplayController();
 
+struct data_t {
+  float roomTemp;
+  float roomHumidity;
+  bool waterLevelSwitchFiring = false;
+  int8_t phLevel;
+  float luxValue;
+  float waterTemp;
+  float waterHumidity;
+  float fanFiring = false;
+  float ledLampOn = false;
+  float waterQuality;
+
+} sensor_data;
+
 int loopCount = 0;
 
 void _loop(Task *t);
@@ -22,44 +36,24 @@ Task mainLoop(MAIN_LOOP_INTERVAL, _loop);
 
 void setup() {
   Serial.begin(9600);
+  init_controllers();
   dc.init(LED_DATA_IN_PIN, LED_CLK_PIN, LED_LOAD_CS_PIN, HOW_BRIGHT);
-  dc.busy(true);
   SoftTimer.add(&mainLoop); 
 }
 
 
 
 void _loop(Task* t) {
-  Serial.print("T:" );
-  Serial.println(extTempHmdSensor.getTemperature());
-  Serial.print("H:" );
-  Serial.println(extTempHmdSensor.getHumidity());
-  Serial.print("LDR: ");
-  Serial.println(ldr.readValue());
-  Serial.print("TDS: ");
-  Serial.println(tdsSensor.readValue());
-  Serial.print("Water Temp: ");
-  Serial.println(wthSensor.getTemperature());
-  Serial.print("Water Humidity: ");
-  Serial.println(wthSensor.getHumidity());
-  Serial.print("Water Lvel: ");
-  Serial.println(waterL.readValue());
-  dc.write("12345678");
+  dc.busy(true); //set booting
+  sensor_data.roomTemp = extTempHmdSensor.getTemperature();
+  sensor_data.roomHumidity = extTempHmdSensor.getHumidity();
+  sensor_data.luxValue = ldr.readValue();
+  sensor_data.waterQuality = tdsSensor.readValue();
+  sensor_data.waterTemp = wthSensor.getTemperature();
+  sensor_data.waterHumidity = wthSensor.getHumidity();
+  sensor_data.waterLevelSwitchFiring =  waterL.readValue() == 1 ? true : false;
 
-
-  delay(1000);
-
-/*  loopCount++;
-  if(loopCount == 10){
-    Serial.print("TDS Sampled: ");
-    Serial.println(tdsSensor.getSampledValue());
-    loopCount = 0;
-  }
-*/
-
-  
-
-
+  dc.reset(true);
 }
 
 

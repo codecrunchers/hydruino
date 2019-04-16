@@ -10,6 +10,7 @@ namespace {
   const int8_t DEFAULT_DEVICE = 0;
   const int8_t DELAY_TIME = 250;
   const int8_t DEBUG  = 1;
+  const int8_t DELAY_LED = 50;
 
 }
 
@@ -86,14 +87,12 @@ void DisplayController::do_busy(){
       3,
       true);
 
-  delay(50);
+  delay(DELAY_LED);
 
   _display->setLed(DEFAULT_DEVICE, 
       curRow,
       2,
       true);
-
-
 
   for(int perimWalk = 0; perimWalk <= 20; perimWalk++){
     _display->setLed(DEFAULT_DEVICE, 
@@ -101,7 +100,7 @@ void DisplayController::do_busy(){
         perimWalk<=8 ? BOTTOM_ROW : TOP_ROW ,  
         true);
 
-    delay(50);
+    delay(DELAY_LED);
 
     if(perimWalk == 8){
       _display->setLed(DEFAULT_DEVICE, 
@@ -109,7 +108,7 @@ void DisplayController::do_busy(){
           6,
           true);
 
-      delay(50);
+      delay(DELAY_LED);
 
       _display->setLed(DEFAULT_DEVICE, 
           7,
@@ -119,7 +118,7 @@ void DisplayController::do_busy(){
     }
 
 
-    delay(50);
+    delay(DELAY_LED);
   }
   do_reset();
 
