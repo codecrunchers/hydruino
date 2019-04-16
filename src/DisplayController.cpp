@@ -2,12 +2,15 @@
 #include "DisplayController.h"  
 #include "LedControl.h"
 
-#define MAX_LEN_MSG 8
-#define DEBUG 1
-#define DEFAULT_BRIGHT 8
-#define LED_COUNT 1
-#define DEFAULT_DEVICE 0
-#define DELAY_TIME 250
+
+namespace {
+    const int8_t MAX_LEN_MSG  = 8;
+    const int8_t DEFAULT_BRIGHT = 8;
+    const int8_t LED_COUNT =  1;
+    const int8_t DEFAULT_DEVICE = 0;
+    const int8_t DELAY_TIME = 250;
+    const int8_t DEBUG  = 1;
+}
 
 void _debugWrite(const char* msg){
 #ifdef DEBUG
