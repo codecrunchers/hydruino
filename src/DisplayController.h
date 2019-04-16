@@ -11,8 +11,11 @@
 
 #include "LedControl.h" // https://playground.arduino.cc/Main/LedControl
 #include <SoftTimer.h>
-#define RUN_INTERVAL 1000
-#define MAX_MSG 8
+
+namespace {
+  const int16_t RUN_INTERVAL  = 1000;
+  const int8_t MAX_MSG  = 9;
+}
 
 
 
@@ -31,26 +34,27 @@ class DisplayController : Task {
       _busy =  busy;
     }
 
-    
+
     /**
      * Write a msg to display
      * will put display in alert mode if more than 8 chars long
      */
     void write(const char* msg){
-      if(NULL == msg){
+      if(nullptr == msg){
         _alert = true;
         return;
       }
-      
+
       size_t msglen = strlen(msg);
-      
-      if(msglen >= 8){
+
+      if(msglen >= MAX_MSG){
         _alert = true;
+        return;
       }
 
       _msg = new char[msglen];
       strcpy(_msg, msg);
-      _write = true;
+      _msg = strrev(_msg);
     };
 
 
@@ -61,10 +65,9 @@ class DisplayController : Task {
     void do_alert();
     void do_write();
     void do_busy();
-    char *_msg;
+    char* _msg = nullptr;
     bool _alert  = false;
     bool _busy = false;
-    bool _write =false;
     bool _reset = false;
 };
 

@@ -4,12 +4,13 @@
 
 
 namespace {
-    const int8_t MAX_LEN_MSG  = 8;
-    const int8_t DEFAULT_BRIGHT = 8;
-    const int8_t LED_COUNT =  1;
-    const int8_t DEFAULT_DEVICE = 0;
-    const int8_t DELAY_TIME = 250;
-    const int8_t DEBUG  = 1;
+  const int8_t MAX_LEN_MSG  = 8;
+  const int8_t DEFAULT_BRIGHT = 8;
+  const int8_t LED_COUNT =  1;
+  const int8_t DEFAULT_DEVICE = 0;
+  const int8_t DELAY_TIME = 250;
+  const int8_t DEBUG  = 1;
+
 }
 
 void _debugWrite(const char* msg){
@@ -20,7 +21,7 @@ void _debugWrite(const char* msg){
 
 
 DisplayController::~DisplayController(){
-  if(_msg){
+  if(_msg != nullptr){
     delete  [] _msg;
   }
   _display = NULL;
@@ -30,8 +31,15 @@ DisplayController::~DisplayController(){
 static void DisplayController::update(Task* t){
   DisplayController* _dc = (DisplayController*) t;
   _debugWrite("Running Led Thread");
+
   if(_dc->_busy == true){
     _dc->do_busy();
+  }else if(_dc->_alert == true){
+    _dc->do_alert();
+  }else if (_dc->_reset){
+    _dc->do_reset();
+  }else if(nullptr != _dc->_msg){
+    _dc->do_write();
   }
 }
 
@@ -52,11 +60,17 @@ void DisplayController::init(int LED_DATA_IN_PIN, int LED_CLK_PIN, int LED_LOAD_
 
 void DisplayController::do_reset(){
   _display->clearDisplay(0);
+  _reset = false;
+  if(nullptr !=_msg){
+    delete [] _msg;
+  }
+  _busy = false;
+  _alert = false;
 }
 
 
 void DisplayController::do_alert(){
-  for(int cycle = 0; cycle < 8; cycle++){
+  for(int cycle = 0; cycle < MAX_LEN_MSG; cycle++){
     _display->setRow(DEFAULT_DEVICE,cycle,0x01);
   }
   do_reset(); 
@@ -66,18 +80,18 @@ void DisplayController::do_alert(){
 #define TOP_ROW 4
 void DisplayController::do_busy(){
   int curRow = 0;
-      delay(100);
-      _display->setLed(DEFAULT_DEVICE, 
-          curRow,
-          3,
-          true);
+  delay(100);
+  _display->setLed(DEFAULT_DEVICE, 
+      curRow,
+      3,
+      true);
 
-      delay(50);
+  delay(50);
 
-      _display->setLed(DEFAULT_DEVICE, 
-          curRow,
-          2,
-          true);
+  _display->setLed(DEFAULT_DEVICE, 
+      curRow,
+      2,
+      true);
 
 
 
