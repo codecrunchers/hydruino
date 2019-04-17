@@ -3,24 +3,6 @@
 #include "LedControl.h"
 
 
-namespace {
-  const int8_t MAX_LEN_MSG  = 8;
-  const int8_t DEFAULT_BRIGHT = 8;
-  const int8_t LED_COUNT =  1;
-  const int8_t DEFAULT_DEVICE = 0;
-  const int8_t DELAY_TIME = 250;
-  const int8_t DEBUG  = 1;
-  const int8_t DELAY_LED = 50;
-
-}
-
-void _debugWrite(const char* msg){
-#ifdef DEBUG
-  Serial.println(msg);
-#endif
-}
-
-
 DisplayController::~DisplayController(){
   if(_msg != nullptr){
     delete  [] _msg;

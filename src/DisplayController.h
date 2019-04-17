@@ -9,15 +9,21 @@
 #include "WConstants.h"
 #endif
 
+#include "cloudponics.h" 
+
 #include "LedControl.h" // https://playground.arduino.cc/Main/LedControl
 #include <SoftTimer.h>
 //asdasdsadsadasdsad
 namespace {
   const int16_t RUN_INTERVAL  = 1000;
-  const int8_t MAX_MSG  = 9;
+  const int8_t MAX_LEN_MSG  = 8;
+  const int8_t DEFAULT_BRIGHT = 8;
+  const int8_t LED_COUNT =  1;
+  const int8_t DEFAULT_DEVICE = 0;
+  const int8_t DELAY_TIME = 250;
+  const int8_t DELAY_LED = 50;
+
 }
-
-
 
 class DisplayController : Task {
 
@@ -47,11 +53,11 @@ class DisplayController : Task {
 
       size_t msglen = strlen(msg);
 
-      if(msglen >= MAX_MSG){
+      if(msglen >= MAX_LEN_MSG+1){
         _alert = true;
         return;
       }
-
+  
       _msg = new char[msglen];
       strcpy(_msg, msg);
       _msg = strrev(_msg);

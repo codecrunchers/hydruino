@@ -1,11 +1,18 @@
 #include "Sensor.h"
 
+Sensor::~Sensor(){
+  if(_desc != nullptr){
+    delete  [] _desc;
+  }
+}
+
 
 void Sensor::init(const char *desc, int pin){
   setDesc(desc);
   setPin(pin);
   pinMode(getPin(), INPUT);
 }
+
 
 float Sensor::readValue(){
   switch(getSensorType()) {
@@ -19,19 +26,14 @@ float Sensor::readValue(){
 }
 
 float Sensor::readValueAnalog(){
-  #ifdef DEBUG
-    Serial.println("\r\nAnalog Read");
-  #endif
+   _debugWrite("Analog Read");
   setLastValue(analogRead(getPin()));
   return getLastValue();
 
 }
 
 float Sensor::readValueDigital(){
-  #ifdef DEBUG
-    Serial.println("\r\nDigital Read");
-  #endif
-
+   _debugWrite("Digital Read");
   setLastValue(digitalRead(getPin()));
   return getLastValue();
 
