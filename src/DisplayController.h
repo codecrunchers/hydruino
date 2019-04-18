@@ -13,7 +13,6 @@
 
 #include "LedControl.h" // https://playground.arduino.cc/Main/LedControl
 #include <SoftTimer.h>
-//asdasdsadsadasdsad
 namespace {
   const int16_t RUN_INTERVAL  = 1000;
   const int8_t MAX_LEN_MSG  = 8;
@@ -53,13 +52,13 @@ class DisplayController : Task {
 
       size_t msglen = strlen(msg);
 
-      if(msglen >= MAX_LEN_MSG+1){
+      if(msglen > MAX_LEN_MSG){
         _alert = true;
         return;
       }
   
       _msg = new char[msglen];
-      strcpy(_msg, msg);
+      strncpy(_msg, msg, msglen);
       _msg = strrev(_msg);
     };
 

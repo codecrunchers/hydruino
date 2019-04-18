@@ -4,7 +4,7 @@
 #include "src/TDSSensor.h"
 #include "src/WaterTempHumiditySensor.h"
 #include "src/DisplayController.h"
-#include "src/PHSensor.h";
+#include "src/PHSensor.h"
 #include <SoftTimer.h>
 
 
@@ -62,13 +62,13 @@ void _loop(Task* t) {
 
 void init_controllers(){
   extTempHmdSensor.init("Temp & Humidity Monitor", DHT11_PIN);
-  delay(1000); //DHT 11 avoid TO
+  delay(DHT_WAIT_TIME);
   ldr.init("ldr", LDR_PIN);
-  char a = ldr.getSensorType();
-  Serial.print("\r\nLDR Type: ");
-  Serial.println(a);
+  const char* a = ldr.getSensorType();
+  _debugWrite("LDR Type: ");
+  _debugWrite(a);
   tdsSensor.init("TDS", TDS_PIN);
   wthSensor.init("WaterTempHumidity", -1);
-  waterL.init("", 2);  
+  waterL.init("Water Level", WATER_PUMP_RELAY_PIN);  
   ph.init("PH Sensor", PH_PIN);
 }

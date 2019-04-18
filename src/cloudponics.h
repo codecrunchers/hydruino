@@ -14,7 +14,7 @@
 namespace {
   const int8_t ANALOG_SENSOR = 1;
   const int8_t DIGITAL_SENSOR = 2;
-
+  const int16_t DHT_WAIT_TIME = 1000;
   const bool DEBUG                  = true;;
   const int8_t HOW_BRIGHT             = 10;
 
@@ -37,8 +37,6 @@ namespace {
       Serial.println(msg);
     }
   }
-
-
 }
 
 #endif

@@ -2,7 +2,7 @@
 
 PHSensor::PHSensor(sensor_type t)  : Sensor(t) {
     _debugWrite("Init PH");
-//  ph.begin();
+    ph.begin();
 }
 
 PHSensor::~PHSensor(){}
