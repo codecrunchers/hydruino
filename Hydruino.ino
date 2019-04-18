@@ -1,8 +1,19 @@
-#include "src/cloudponics.h"
 #include "src/Sensor.h"
-#include "src/PHSensor.h"
+#include "src/DHTSensor.h"
+#include "src/LDRSensor.h"
+#include "src/TDSSensor.h"
+#include "src/WaterTempHumiditySensor.h"
+#include "src/DisplayController.h"
+#include "src/PHSensor.h";
 #include <SoftTimer.h>
 
+
+DHTSensor extTempHmdSensor = DHTSensor(DIGITAL_SENSOR);
+LDRSensor ldr = LDRSensor(ANALOG_SENSOR);
+TDSSensor tdsSensor = TDSSensor(ANALOG_SENSOR);
+WaterTempHumiditySensor wthSensor = WaterTempHumiditySensor(ANALOG_SENSOR);
+Sensor waterL = Sensor(DIGITAL_SENSOR);                                      
+DisplayController dc = DisplayController();
 PHSensor ph = PHSensor(ANALOG_SENSOR);
 
 struct data_t {
@@ -19,6 +30,8 @@ struct data_t {
 
 } sensor_data;
 
+int loopCount = 0;
+
 void _loop(Task *t);
 Task mainLoop(MAIN_LOOP_INTERVAL, _loop);
 
@@ -26,18 +39,36 @@ Task mainLoop(MAIN_LOOP_INTERVAL, _loop);
 void setup() {
   Serial.begin(9600);
   init_controllers();
-  _debugWrite(ph.getDesc());
+  dc.init(LED_DATA_IN_PIN, LED_CLK_PIN, LED_LOAD_CS_PIN, HOW_BRIGHT);
   SoftTimer.add(&mainLoop); 
 }
 
 
+
 void _loop(Task* t) {
-  int phLevel = ph.readValue();
-  Serial.println(phLevel);
+  dc.busy(true); //set booting
+  sensor_data.roomTemp = extTempHmdSensor.getTemperature();
+  sensor_data.roomHumidity = extTempHmdSensor.getHumidity();
+  sensor_data.luxValue = ldr.readValue();
+  sensor_data.waterQuality = tdsSensor.readValue();
+  sensor_data.waterTemp = wthSensor.getTemperature();
+  sensor_data.waterHumidity = wthSensor.getHumidity();
+  sensor_data.waterLevelSwitchFiring =  waterL.readValue() == 1 ? true : false;
+  sensor_data.phLevel = ph.readValue();
+  dc.reset(true);
 }
 
 
+
 void init_controllers(){
-  ph.init("PH", PH_PIN);
-  _debugWrite("Initted");
+  extTempHmdSensor.init("Temp & Humidity Monitor", DHT11_PIN);
+  delay(1000); //DHT 11 avoid TO
+  ldr.init("ldr", LDR_PIN);
+  char a = ldr.getSensorType();
+  Serial.print("\r\nLDR Type: ");
+  Serial.println(a);
+  tdsSensor.init("TDS", TDS_PIN);
+  wthSensor.init("WaterTempHumidity", -1);
+  waterL.init("", 2);  
+  ph.init("PH Sensor", PH_PIN);
 }
