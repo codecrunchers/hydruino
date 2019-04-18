@@ -81,7 +81,7 @@ analogBufferTemp	src/TDSSensor.h	/^    int analogBufferTemp[SCOUNT];$/;"	m	class
 averageVoltage	src/TDSSensor.h	/^    float averageVoltage = 0,tdsValue = 0,temperature = 25;$/;"	m	class:TDSSensor
 busy	src/DisplayController.h	/^    void busy(bool busy){$/;"	f	class:DisplayController
 copyIndex	src/TDSSensor.h	/^    int analogBufferIndex = 0,copyIndex = 0;$/;"	m	class:TDSSensor
-dht_sensor_reading	src/DHTSensor.h	/^    } dht_sensor_reading;$/;"	t	class:DHTSensor	typeref:struct:DHTSensor::__anon2
+dht_sensor_reading	src/DHTSensor.h	/^    } dht_sensor_reading;$/;"	t	class:DHTSensor	typeref:struct:DHTSensor::__anon1
 do_alert	src/DisplayController.cpp	/^void DisplayController::do_alert(){$/;"	f	class:DisplayController
 do_busy	src/DisplayController.cpp	/^void DisplayController::do_busy(){$/;"	f	class:DisplayController
 do_reset	src/DisplayController.cpp	/^void DisplayController::do_reset(){$/;"	f	class:DisplayController
@@ -97,7 +97,7 @@ getSampledValue	src/TDSSensor.cpp	/^float TDSSensor::getSampledValue(){$/;"	f	cl
 getSensorType	src/Sensor.h	/^    sensor_type getSensorType() { return _sensor_type; }$/;"	f	class:Sensor
 getTemperature	src/DHTSensor.cpp	/^float DHTSensor::getTemperature(){$/;"	f	class:DHTSensor
 getTemperature	src/WaterTempHumiditySensor.cpp	/^float WaterTempHumiditySensor::getTemperature(){$/;"	f	class:WaterTempHumiditySensor
-humidity	src/DHTSensor.h	/^      float humidity;$/;"	m	struct:DHTSensor::__anon2
+humidity	src/DHTSensor.h	/^      float humidity;$/;"	m	struct:DHTSensor::__anon1
 humidity	src/WaterTempHumiditySensor.h	/^      float humidity;$/;"	m	struct:WaterTempHumiditySensor::__anon5
 init	src/DHTSensor.cpp	/^void DHTSensor::init(const char *desc, int pin) {$/;"	f	class:DHTSensor
 init	src/DisplayController.cpp	/^void DisplayController::init(int led_data_in_pin, int led_clk_pin, int led_load_cs_pin, int brightness){$/;"	f	class:DisplayController
@@ -107,7 +107,6 @@ init	src/WaterTempHumiditySensor.cpp	/^void WaterTempHumiditySensor::init(const 
 lastVal	src/Sensor.h	/^    float lastVal= 0L;$/;"	m	class:Sensor
 override	src/DHTSensor.h	/^    float readValue() override ;   \/\/defaults to Temperature$/;"	m	class:DHTSensor
 override	src/DHTSensor.h	/^    void init(const char *desc, int pin) override;$/;"	m	class:DHTSensor
-override	src/PHSensor.h	/^    float readValue() override;$/;"	m	class:PHSensor
 override	src/TDSSensor.h	/^    float readValue() override; \/\/TODO AutoCall on Timer$/;"	m	class:TDSSensor
 override	src/WaterTempHumiditySensor.h	/^    float readValue() override ;   $/;"	m	class:WaterTempHumiditySensor
 override	src/WaterTempHumiditySensor.h	/^    void init(const char *desc, int pin) override;$/;"	m	class:WaterTempHumiditySensor
@@ -115,7 +114,7 @@ ph	src/PHSensor.h	/^    DFRobot_PH ph;$/;"	m	class:PHSensor
 phValue	src/PHSensor.h	/^    float phValue;$/;"	m	class:PHSensor
 pin	src/Sensor.h	/^    int8_t pin;$/;"	m	class:Sensor
 readValue	src/DHTSensor.cpp	/^float DHTSensor::readValue() {$/;"	f	class:DHTSensor
-readValue	src/PHSensor.cpp	/^float PHSensor::readValue(){$/;"	f	class:PHSensor
+readValue	src/PHSensor.cpp	/^float PHSensor::readValue(float temperature){$/;"	f	class:PHSensor
 readValue	src/Sensor.cpp	/^float Sensor::readValue(){$/;"	f	class:Sensor
 readValue	src/TDSSensor.cpp	/^float TDSSensor::readValue(){$/;"	f	class:TDSSensor
 readValue	src/WaterTempHumiditySensor.cpp	/^float WaterTempHumiditySensor::readValue(){$/;"	f	class:WaterTempHumiditySensor
@@ -132,8 +131,7 @@ start	src/MotorController.cpp	/^void MotorController::start(){$/;"	f	class:Motor
 status	src/DHTSensor.cpp	/^const char* DHTSensor::status(){ $/;"	f	class:DHTSensor
 stop	src/MotorController.cpp	/^void MotorController::stop(){$/;"	f	class:MotorController
 tdsValue	src/TDSSensor.h	/^    float averageVoltage = 0,tdsValue = 0,temperature = 25;$/;"	m	class:TDSSensor
-temperature	src/DHTSensor.h	/^      float  temperature;$/;"	m	struct:DHTSensor::__anon2
-temperature	src/PHSensor.h	/^    float temperature = 25;$/;"	m	class:PHSensor
+temperature	src/DHTSensor.h	/^      float  temperature;$/;"	m	struct:DHTSensor::__anon1
 temperature	src/TDSSensor.h	/^    float averageVoltage = 0,tdsValue = 0,temperature = 25;$/;"	m	class:TDSSensor
 temperature	src/WaterTempHumiditySensor.h	/^      float  temperature;$/;"	m	struct:WaterTempHumiditySensor::__anon5
 update	src/DisplayController.cpp	/^static void DisplayController::update(Task* t){$/;"	f	class:DisplayController

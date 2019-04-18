@@ -17,7 +17,7 @@ DisplayController dc = DisplayController();
 PHSensor ph = PHSensor(ANALOG_SENSOR);
 
 struct data_t {
-  float roomTemp;
+  float roomTemp = 25.0L;
   float roomHumidity;
   bool waterLevelSwitchFiring = false;
   int8_t phLevel;
@@ -54,7 +54,7 @@ void _loop(Task* t) {
   sensor_data.waterTemp = wthSensor.getTemperature();
   sensor_data.waterHumidity = wthSensor.getHumidity();
   sensor_data.waterLevelSwitchFiring =  waterL.readValue() == 1 ? true : false;
-  sensor_data.phLevel = ph.readValue();
+  sensor_data.phLevel = ph.readValue(sensor_data.roomTemp);
   dc.reset(true);
 }
 

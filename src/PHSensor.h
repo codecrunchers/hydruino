@@ -17,12 +17,11 @@ class PHSensor : public Sensor {
   public:
     PHSensor(sensor_type t);
     ~PHSensor();
-    float readValue() override;
+    float readValue(float temperature);
  
   private:
     float voltage;
     float phValue;
-    float temperature = 25;
     DFRobot_PH ph;
 };
 
