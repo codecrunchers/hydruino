@@ -1,15 +1,27 @@
 #include "WaterPump.h"
 
-void WaterPump::stop(){
+void WaterPump::stop()
+{
   _debugWrite("Stop Motor on Pin");
-  _debugWrite(Sensor::getPin());  
-  digitalWrite(WATER_PUMP_RELAY_PIN, LOW);    
+  //_debugWrite(Sensor::getPin());
+  if (EMULATE_SENSOR)
+  {
+    Serial.println("Emulating motor stop");
+  }
+  else
+  {
+    digitalWrite(WATER_PUMP_RELAY_PIN, LOW);
+  }
 }
 
-void WaterPump::start(){
-  _debugWrite("Start Motor");
-   digitalWrite(WATER_PUMP_RELAY_PIN, HIGH);    
+void WaterPump::start()
+{
+  if (EMULATE_SENSOR)
+  {
+    Serial.println("Emulating motor start");
+  }
+  else
+  {
+    digitalWrite(WATER_PUMP_RELAY_PIN, HIGH);
+  }
 }
-
-
-

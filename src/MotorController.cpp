@@ -1,6 +1,6 @@
 #include "MotorController.h"
 
-void MotorController::init(const char *desc, int pin) {
+void MotorController::init(const char *desc, int8_t pin) {
       Sensor::init(desc, pin);
       pinMode(pin, OUTPUT);//TODO - sublass
 }

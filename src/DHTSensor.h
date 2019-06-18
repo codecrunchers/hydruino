@@ -15,7 +15,7 @@ class DHTSensor : public Sensor {
       float humidity;
     } dht_sensor_reading;
 
-    void init(const char *desc, int pin) override;
+    void init(const char *desc, int8_t pin) override;
     float readValue() override ;   //defaults to Temperature
     float getTemperature();
     float getHumidity();

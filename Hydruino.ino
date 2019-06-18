@@ -1,49 +1,47 @@
 #include "src/Sensor.h"
-#include "src/DHTSensor.h"
-#include "src/LDRSensor.h"
-#include "src/TDSSensor.h"
-#include "src/WaterTempHumiditySensor.h"
-#include "src/DisplayController.h"
 #include "src/WaterPump.h"
-#include "src/PHSensor.h"
-#include "src/TThread.h"
 #include <SoftTimer.h>
 
+void _main(Task *t);
+void TaskMotorController(Task *t);
 
-Sensor waterL = Sensor(DIGITAL_SENSOR);                                      
+Task mainLoop(MAIN_LOOP_INTERVAL, _main);
+Task motorControllerLoop(5000, TaskMotorController);
+
+Sensor waterLevel = Sensor(DIGITAL_SENSOR);
 WaterPump motor = WaterPump(DIGITAL_SENSOR);
 
-struct data_t {
-  float roomTemp = 25.0L;
-  float roomHumidity;
-  bool waterLevelSwitchFiring = false;
-  int8_t phLevel;
-  float luxValue;
-  float waterTemp;
-  float waterHumidity;
-  float fanFiring = false;
-  float ledLampOn = false;
-  float waterQuality;
-
-} sensor_data;
-
-int loopCount = 0;
-
-void _main(Task *t);
-Task mainLoop(MAIN_LOOP_INTERVAL, _main);
-TThread motorLoop = TThread(&motor, 5000);
-
-void setup() {
+void setup()
+{
   Serial.begin(9600);
+  _debugWrite("---------------------------------------Init------------------------------------------------");
   init_controllers();
-  SoftTimer.add(&mainLoop); 
-  motorLoop.start();
+  SoftTimer.add(&mainLoop);
+  SoftTimer.add(&motorControllerLoop);
 }
 
-void _main(Task* t) {
-  Serial.println("In Pseudo Main Loop");  
+void _main(Task *t)
+{
+  Serial.println("In Pseudo Main Loop");
 }
 
-void init_controllers(){
+void TaskMotorController(Task *t)
+{
+  _debugWrite("In MC Task");
+  int full = (int)waterLevel.readValue();
+  motor.start();
+  while (full != RESEVOIR_FULL)
+  {
+    full = (int)waterLevel.readValue();
+    _debugWrite("About to sleep for Motor");
+    delay(2000);
+
+  }
+  motor.stop();
+}
+
+void init_controllers()
+{
   motor.init("Pump", WATER_PUMP_RELAY_PIN);
+  waterLevel.init("WaterLevel Meter 1 on Pin 8", RESEVOIR_TILT_SWITCH_PIN);
 }

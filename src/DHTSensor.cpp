@@ -25,7 +25,7 @@ const char* DHTSensor::status(){
 
 }
 
-void DHTSensor::init(const char *desc, int pin) {
+void DHTSensor::init(const char *desc, int8_t pin) {
   setPin(pin);
   setDesc(desc);
 }

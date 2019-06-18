@@ -2,7 +2,7 @@
 #include "DFRobot_SHT20.h"
 
 
-void WaterTempHumiditySensor::init(const char *desc, int pin){
+void WaterTempHumiditySensor::init(const char *desc, int8_t pin){
   setPin(pin);
   setDesc(desc);
 

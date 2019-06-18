@@ -17,7 +17,7 @@ class MotorController : public Sensor {
   public:
     MotorController(sensor_type t) : Sensor(t){}
     
-    void init(const char *desc, int pin) override;
+    void init(const char *desc, int8_t pin) override;
     float readValue() override ;   //defaults to Temperature
 
     inline virtual void stop(){}
