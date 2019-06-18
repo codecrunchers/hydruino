@@ -4,17 +4,14 @@
 #include "src/TDSSensor.h"
 #include "src/WaterTempHumiditySensor.h"
 #include "src/DisplayController.h"
+#include "src/WaterPump.h"
 #include "src/PHSensor.h"
+#include "src/TThread.h"
 #include <SoftTimer.h>
 
 
-DHTSensor extTempHmdSensor = DHTSensor(DIGITAL_SENSOR);
-LDRSensor ldr = LDRSensor(ANALOG_SENSOR);
-TDSSensor tdsSensor = TDSSensor(ANALOG_SENSOR);
-WaterTempHumiditySensor wthSensor = WaterTempHumiditySensor(ANALOG_SENSOR);
 Sensor waterL = Sensor(DIGITAL_SENSOR);                                      
-DisplayController dc = DisplayController();
-PHSensor ph = PHSensor(ANALOG_SENSOR);
+WaterPump motor = WaterPump(DIGITAL_SENSOR);
 
 struct data_t {
   float roomTemp = 25.0L;
@@ -32,43 +29,21 @@ struct data_t {
 
 int loopCount = 0;
 
-void _loop(Task *t);
-Task mainLoop(MAIN_LOOP_INTERVAL, _loop);
-
+void _main(Task *t);
+Task mainLoop(MAIN_LOOP_INTERVAL, _main);
+TThread motorLoop = TThread(&motor, 5000);
 
 void setup() {
   Serial.begin(9600);
   init_controllers();
-  dc.init(LED_DATA_IN_PIN, LED_CLK_PIN, LED_LOAD_CS_PIN, HOW_BRIGHT);
   SoftTimer.add(&mainLoop); 
+  motorLoop.start();
 }
 
-
-
-void _loop(Task* t) {
-  dc.busy(true); //set booting
-  sensor_data.roomTemp = extTempHmdSensor.getTemperature();
-  sensor_data.roomHumidity = extTempHmdSensor.getHumidity();
-  sensor_data.luxValue = ldr.readValue();
-  sensor_data.waterQuality = tdsSensor.readValue();
-  sensor_data.waterTemp = wthSensor.getTemperature();
-  sensor_data.waterHumidity = wthSensor.getHumidity();
-  sensor_data.waterLevelSwitchFiring =  waterL.readValue() == 1 ? true : false;
-  sensor_data.phLevel = ph.readValue(sensor_data.roomTemp);
-  dc.reset(true);
+void _main(Task* t) {
+  Serial.println("In Pseudo Main Loop");  
 }
-
-
 
 void init_controllers(){
-  extTempHmdSensor.init("Temp & Humidity Monitor", DHT11_PIN);
-  delay(DHT_WAIT_TIME);
-  ldr.init("ldr", LDR_PIN);
-  const char* a = ldr.getSensorType();
-  _debugWrite("LDR Type: ");
-  _debugWrite(a);
-  tdsSensor.init("TDS", TDS_PIN);
-  wthSensor.init("WaterTempHumidity", -1);
-  waterL.init("Water Level", WATER_PUMP_RELAY_PIN);  
-  ph.init("PH Sensor", PH_PIN);
+  motor.init("Pump", WATER_PUMP_RELAY_PIN);
 }

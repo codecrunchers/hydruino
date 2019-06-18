@@ -14,6 +14,12 @@
 
 
 class WaterPump : public MotorController {
+  public:
+    inline WaterPump(sensor_type t) : MotorController(t){}
+    void stop();
+    void start();    
+    
+
 };
 
 #endif

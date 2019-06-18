@@ -7,7 +7,7 @@
 
 
 
-class DHTSensor : public Sensor{
+class DHTSensor : public Sensor {
   public:
     DHTSensor(sensor_type t) : Sensor(t){}
     typedef struct {

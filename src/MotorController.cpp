@@ -1,12 +1,12 @@
 #include "MotorController.h"
 
-MotorController::MotorController(){}
-
-void MotorController::stop(){
-  digitalWrite(relayPin, LOW);    
+void MotorController::init(const char *desc, int pin) {
+      Sensor::init(desc, pin);
+      pinMode(pin, OUTPUT);//TODO - sublass
 }
 
-void MotorController::start(){
-   digitalWrite(relayPin, HIGH);    
+float MotorController::readValue(){
+  //do not call me
+  return -1L;
 }
 

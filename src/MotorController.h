@@ -10,23 +10,21 @@
 #endif
 
 #include "cloudponics.h"
+#include "Sensor.h"
 
-class MotorController {
+class MotorController : public Sensor {
 
   public:
-    MotorController();
+    MotorController(sensor_type t) : Sensor(t){}
     
-    inline virtual void init(char *desc, int pin) {
-      strncpy(_desc, desc, 255);
-      relayPin = pin;
-    }
+    void init(const char *desc, int pin) override;
+    float readValue() override ;   //defaults to Temperature
 
-    inline virtual void stop();
-    inline virtual void start();    
+    inline virtual void stop(){}
+    inline virtual void start(){}    
 
-  private:
-    char _desc[256];
-    int relayPin;
+    
+    
 };
 
 #endif
